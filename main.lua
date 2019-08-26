@@ -41,7 +41,7 @@ function fillReactor()
             local stack = ic.getStackInSlot(reactor, reactorSlotNumber)
             local reactorItem = reactorSchema[i][j]
 
-            if stack.name == nil and reactorItem ~= nil then
+            if stack == nil and reactorItem ~= nil then
                 equipSlotByName(reactorItem)
                 ic.dropIntoSlot(reactor, reactorSlotNumber, 1)
             end
