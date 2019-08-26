@@ -1,6 +1,6 @@
-local robot = require("robot")
-local component = require("component")
-local sides = require("sides")
+robot = require("robot")
+component = require("component")
+sides = require("sides")
 
 ic = component.getPrimary("inventory_controller")
 
@@ -22,14 +22,44 @@ reactorSchema = {
     {C.PLAT, C.OVER, C.COMP, C.PLAT, C.OVER, C.COMP, C.PLAT, C.OVER, C.COMP}
 }
 
-expectedInventorySize = 54
+reactorWidth = 9
+reactorHeight = 6
+
+expectedInventorySize = 54 + 4
 
 function fillReactor()
-    if ic.getInventorySize(sides.front) ~= expectedInventorySize then
-        print("Reactor inventory should be " + expectedInventorySize)
+    reactor = sides.front
+
+    if ic.getInventorySize(reactor) ~= expectedInventorySize then
+        print("Reactor inventory should be " .. expectedInventorySize)
         return
     end
 
+    for i = 1, reactorHeight do
+        for j = 1, reactorWidth do
+            local reactorSlotNumber = i * reactorWidth + j
+            local stack = ic.getStackInSlot(reactor, reactorSlotNumber)
+            local reactorItem = reactorSchema[i][j]
+
+            if stack.name == nil and reactorItem ~= nil then
+                equipSlotByName(reactorItem)
+                ic.dropIntoSlot(reactor, reactorSlotNumber, 1)
+            end
+        end
+    end
+end
+
+function equipSlotByName(itemName)
+    if ic.getStackInInternalSlot() and ic.getStackInInternalSlot().name == itemName then
+        return
+    end
+
+    for i = 1, robot.inventorySize() do
+        if ic.getStackInInternalSlot(i) and ic.getStackInInternalSlot(i).name == itemName then
+            robot.select(i)
+            return i
+        end
+    end
 end
 
 fillReactor()
