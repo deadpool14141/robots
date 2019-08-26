@@ -34,33 +34,33 @@ end
 
 fillReactor()
 
-function checkDust()
-    top = trans.getInventorySize(chest)
-    for i = 1,top do
-        inventory = trans.getStackInSlot(chest, i)
-        if inventory ~= nil then
-            for k,v in pairs(inventory) do
-                if k == "name" then
-                    if v == "minecraft:cobblestone" then
-                        trans.transferItem(chest, hammer, 1,i, 1)
-                        os.sleep(.5)
-                        trans.transferItem(hammer, chest)
-                    elseif v == "minecraft:gravel" then
-                        trans.transferItem(chest,hammer, 1,i,1)
-                        os.sleep(.5)
-                        trans.transferItem(hammer, chest)
-                    elseif v == "minecraft:sand" then
-                        trans.transferItem(chest, hammer, 1,i, 1)
-                        os.sleep(.5)
-						trans.transferItem(hammer, chest, 1,i,1)
-                    elseif v == "exnihloadscensio:blockDust" then
-						trans.transferItem(chest, siev, 1,i,1)
-					end
-                end
-            end
-        end
-    end
-end
+--function checkDust()
+--    top = trans.getInventorySize(chest)
+--    for i = 1,top do
+--        inventory = trans.getStackInSlot(chest, i)
+--        if inventory ~= nil then
+--            for k,v in pairs(inventory) do
+--                if k == "name" then
+--                    if v == "minecraft:cobblestone" then
+--                        trans.transferItem(chest, hammer, 1,i, 1)
+--                        os.sleep(.5)
+--                        trans.transferItem(hammer, chest)
+--                    elseif v == "minecraft:gravel" then
+--                        trans.transferItem(chest,hammer, 1,i,1)
+--                        os.sleep(.5)
+--                        trans.transferItem(hammer, chest)
+--                    elseif v == "minecraft:sand" then
+--                        trans.transferItem(chest, hammer, 1,i, 1)
+--                        os.sleep(.5)
+--						trans.transferItem(hammer, chest, 1,i,1)
+--                    elseif v == "exnihloadscensio:blockDust" then
+--						trans.transferItem(chest, siev, 1,i,1)
+--					end
+--                end
+--            end
+--        end
+--    end
+--end
 
 
 --component.getPrimary("generator").insert()
