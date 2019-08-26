@@ -35,7 +35,7 @@ function fillReactor()
         return
     end
 
-    for i = 1, reactorHeight do
+    for i = 0, reactorHeight - 1 do
         for j = 1, reactorWidth do
             local reactorSlotNumber = i * reactorWidth + j
             local stack = ic.getStackInSlot(reactor, reactorSlotNumber)
