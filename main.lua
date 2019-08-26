@@ -35,9 +35,9 @@ function fillReactor()
         return
     end
 
-    for i = 0, reactorHeight - 1 do
+    for i = 1, reactorHeight do
         for j = 1, reactorWidth do
-            local reactorSlotNumber = i * reactorWidth + j
+            local reactorSlotNumber = (i - 1) * reactorWidth + j
             local stack = ic.getStackInSlot(reactor, reactorSlotNumber)
             local reactorItem = reactorSchema[i][j]
 
