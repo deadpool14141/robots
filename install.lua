@@ -1,8 +1,11 @@
 component = require("component")
 filesystem = require("filesystem")
+computer = require("computer")
 
 redstone = component.redstone
 redstone.setWakeThreshold(1)
+
+computer.addUser("deadpool94")
 
 if (filesystem.exists(filesystem.concat(os.getenv("PWD"), "casino"))) then
     os.execute("rm -r casino")
