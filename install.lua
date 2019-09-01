@@ -1,11 +1,10 @@
 component = require("component")
 filesystem = require("filesystem")
-os = requrie("os")
 
 redstone = component.redstone
 redstone.setWakeThreshold(1)
 
-if (filesystem.exists("casino")) then
+if (filesystem.exists(filesystem.concat(os.getenv("PWD"), "casino"))) then
     os.execute("rm -r casino")
 end
 
@@ -14,7 +13,7 @@ os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/c
 os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/configcasino.lua casino/configcasino.lua -f")
 os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/data-casino.dat casino/data-casino.dat -f")
 os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/shrc shrc -f")
-os.execute("cp shrc /home.shrc")
+os.execute("cp shrc /home/.shrc")
 
 if (filesystem.exists("/home/casino")) then
     filesystem.remove("/home/casino/casino.lua")

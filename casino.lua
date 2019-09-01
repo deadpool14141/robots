@@ -256,7 +256,7 @@ while true do
     draw()
 
     leverSignal = redstone.getInput(config.leverSide)
-    if isReadyToSpin and leverSignal > 0 then
+    if isReadyToSpin and leverSignal > 0 and credits > 0 then
         startRound(1)
         isReadyToSpin = false
     elseif isReadyToSpin == false and leverSignal == 0 then
