@@ -5,7 +5,7 @@ local _M = {}
 _M.leftChest= {
     address = "",
     stackSize = 64,
-    side = sides.left
+    side = sides.top
 }
 
 _M.rightChest = {

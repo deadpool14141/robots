@@ -257,8 +257,11 @@ while true do
 
     leverSignal = redstone.getInput(config.leverSide)
     if isReadyToSpin and leverSignal > 0 and credits > 0 then
+        drawStatus(WON_LABEL_Y, "Rolling...", 0xFFFFFF)
         startRound(1)
         isReadyToSpin = false
+    elseif isReadyToSpin and leverSignal > 0 and credits <= 0 then
+        drawStatus(WON_LABEL_Y, "You have no credits", 0xFF0000)
     elseif isReadyToSpin == false and leverSignal == 0 then
         isReadyToSpin = true
     end
