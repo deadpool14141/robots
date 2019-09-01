@@ -5,6 +5,17 @@ os = requrie("os")
 redstone = component.redstone
 redstone.setWakeThreshold(1)
 
+if (filesystem.exists("casino")) then
+    os.execute("rm -r casino")
+end
+
+os.execute("mkdir casino")
+os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/casino.lua casino/casino.lua -f")
+os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/configcasino.lua casino/configcasino.lua -f")
+os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/data-casino.dat casino/data-casino.dat -f")
+os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/shrc shrc -f")
+os.execute("cp shrc /home.shrc")
+
 if (filesystem.exists("/home/casino")) then
     filesystem.remove("/home/casino/casino.lua")
 else
