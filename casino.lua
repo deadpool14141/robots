@@ -147,11 +147,11 @@ function calculateWon(bet, slotResults)
     local b = slotResults[2]
     local c = slotResults[3]
 
-    if a == c and b == SLOT_OPTION_COUNT then
+    if a == c and math.floor(b) == SLOT_OPTION_COUNT then
         return bet * 4
     end
 
-    if a == b and b == c and a == SLOT_OPTION_COUNT then
+    if a == b and b == c and math.floor(a) == SLOT_OPTION_COUNT then
         return bet * 10
     end
 
