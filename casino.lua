@@ -143,15 +143,11 @@ function drawSlots(slotResults)
 end
 
 function calculateWon(bet, slotResults)
-    local a = slotResults[1]
-    local b = slotResults[2]
-    local c = slotResults[3]
+    local a = math.floor(slotResults[1])
+    local b = math.floor(slotResults[2])
+    local c = math.floor(slotResults[3])
 
-    if a == c and math.floor(b) == SLOT_OPTION_COUNT then
-        return bet * 4
-    end
-
-    if a == b and b == c and math.floor(a) == SLOT_OPTION_COUNT then
+    if a == b and b == c and a == SLOT_OPTION_COUNT then
         return bet * 10
     end
 
@@ -159,7 +155,11 @@ function calculateWon(bet, slotResults)
         return bet * 5
     end
 
-    if a == b or b == c then
+    if a == c and a > SLOT_OPTION_COUNT - 3  and b == SLOT_OPTION_COUNT then
+        return bet * 4
+    end
+
+    if a == b then
         return bet * 2
     end
 
