@@ -77,11 +77,14 @@ function saveDataToFile(a, b)
 end
 
 function chestAmount(chest, side)
-    chestSize = chest.getInventorySize(side)
+    chestSize = chest.getInventorySize()
     sum = 0
 
     for i = 1, chestSize do
-        sum = sum + chest.getSlotStackSize(side, i)
+        stack = chest.getStackInSlot(i)
+        if stack ~= nil then
+            sum = sum + chest.getStackInSlot(i).qty
+        end
     end
 
     return sum
