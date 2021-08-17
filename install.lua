@@ -26,4 +26,4 @@ os.execute("wget https://raw.githubusercontent.com/deadpool14141/robots/master/d
 --     os.execute("cp casino/data-casino.dat /home/casino/data-casino.dat")
 -- end
 
-os.execute("cp casino/casino.lua /home/casino/casino.lua")
+-- os.execute("cp casino/casino.lua /home/casino/casino.lua")

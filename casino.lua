@@ -83,7 +83,7 @@ function chestAmount(chest, side)
     for i = 1, chestSize do
         stack = chest.getStackInSlot(i)
         if stack ~= nil then
-            sum = sum + chest.getStackInSlot(i).qty
+            sum = sum + stack.qty
         end
     end
 
@@ -173,20 +173,22 @@ function payout(amount)
     end
 
     local chest = cmps.rightChest
-    local side = config.rightChest.side
     local sinkSide = config.rightChest.sinkSide
 
-    chestSize = chest.getInventorySize(side)
+    chestSize = chest.getInventorySize()
 
     i = 1
 
     while amount > 0 do
-        local stackSize = chest.getSlotStackSize(side, i)
-        local transferCount = math.min(stackSize, amount)
+        local stack = chest.getStackInSlot(i)
+        if stack ~= nil then
+            local stackSize = stack.qty
+            local transferCount = math.min(stackSize, amount)
 
-        if stackSize > 0 then
-            if chest.transferItem(side, sinkSide, transferCount, i, i) then
-                amount = amount - transferCount
+            if stackSize > 0 then
+                if chest.pushItem(sinkSide, i, transferCount) then
+                    amount = amount - transferCount
+                end
             end
         end
 
@@ -194,11 +196,6 @@ function payout(amount)
         if i > INVENTORY_SIZE then
             i = 1
         end
-    end
-
-
-    for i = 1, chestSize do
-        sum = sum + chest.getSlotStackSize(side, i)
     end
 end
 
