@@ -6,7 +6,6 @@ redstone = component.redstone
 sides = require("sides")
 term = require("term")
 colors = require("colors")
-thread = require("thread")
 
 gpu.setResolution(80, 25)
 term.clear()
@@ -52,7 +51,7 @@ credits = 0
 
 
 function setComponent(obj, keyName, address)
-    cmp = component.proxy(address)
+    cmp = component.proxy(component.get(address))
 
     if cmp ~= nil then
         obj[keyName] = cmp
@@ -79,7 +78,6 @@ end
 
 function chestAmount(chest, side)
     chestSize = chest.getInventorySize(side)
-
     sum = 0
 
     for i = 1, chestSize do
