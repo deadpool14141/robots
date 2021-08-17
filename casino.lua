@@ -30,7 +30,7 @@ SLOT_Y_OFFSET = 5
 SLOT_WIDTH = math.floor(SCREEN_RESOLUTION_W / SLOT_COUNT) - 2 * SLOT_X_OFFSET
 SLOT_HEIGHT = math.floor(SCREEN_RESOLUTION_H / SLOT_COUNT)
 slotYStart = SCREEN_RESOLUTION_H - SLOT_HEIGHT - SLOT_Y_OFFSET
-ROLL_COUNT = 15
+ROLL_COUNT = 10
 
 INVENTORY_SIZE = 27
 
@@ -132,7 +132,7 @@ function drawSlots(slotResults)
             local xCoord = SLOT_X_OFFSET + (j - 1) * 2 * SLOT_X_OFFSET + (j - 1) * SLOT_WIDTH
             gpu.fill(xCoord, slotYStart, SLOT_WIDTH, SLOT_HEIGHT, " ")
         end
-        os.sleep(0.2)
+        os.sleep(0.1)
     end
 
     for i = 1, SLOT_COUNT do
@@ -160,8 +160,8 @@ function calculateWon(bet, slotResults)
         return bet * 4
     end
 
-    if a == b then
-        return bet * 2
+    if a == b or b == c then
+        return bet
     end
 
     return 0
@@ -253,6 +253,7 @@ while true do
 
     draw()
 
+    drawStatus(WON_LABEL_Y, "", 0xFF0000)
     leverSignal = redstone.getInput(config.leverSide)
     if isReadyToSpin and leverSignal > 0 and credits > 0 then
         drawStatus(WON_LABEL_Y, "Rolling...", 0xFFFFFF)
